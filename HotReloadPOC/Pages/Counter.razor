@@ -1,0 +1,31 @@
+﻿@page "/counter"
+
+@inject NavigationManager Navigation
+
+<p>Current count 22: @currentCount</p>
+
+<button class="btn btn-primary btn-red" @onclick="IncrementCount">Click Me Too!</button>
+
+<EditForm Model="@Login" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <InputText @bind-Value="Login.Email" />
+    <InputText @bind-Value="Login.Password" />
+    <button class="btn btn btn-lg btn-primary" type="submit">Sign in One</button>
+</EditForm>
+
+@code {
+    private LoginResult Login = new LoginResult();
+    private int currentCount = 0;
+
+    private void IncrementCount()
+    {
+        currentCount += 30;
+    }
+
+    private void HandleValidSubmit()
+    {
+        Navigation.NavigateTo("/");
+    }
+}
